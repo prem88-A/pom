@@ -1,110 +1,58 @@
-import React, { useState } from "react";
-import { Card, CardContent, TextField, Button } from "@material-ui/core"; // ใช้ Material UI
-import { motion } from "framer-motion";
-
-// กำหนดประเภทข้อมูลของ state
-interface WeatherData {
-  temp: number;
-  desc: string;
-}
-
-const TrafficLoginPage: React.FC = () => {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const [weather, setWeather] = useState<WeatherData | null>(null);
-
-  const handleLogin = () => {
-    if (username === "admin" && password === "1234") {
-      setLoggedIn(true);
-    } else {
-      alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>เว็บจราจร ร้อยเอ็ด</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #1e3a8a, #000);
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2rem;
     }
-  };
+    .card {
+      background: #111;
+      border: 1px solid gold;
+      border-radius: 16px;
+      padding: 1.5rem;
+      max-width: 400px;
+      margin: 0 auto;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+    iframe {
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+    audio {
+      margin-top: 1rem;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>ระบบจราจร ร้อยเอ็ด</h1>
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-black flex flex-col items-center justify-center p-4 space-y-6">
-      <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Card className="w-[380px] shadow-2xl border border-yellow-400">
-          <CardContent className="space-y-6 p-6">
-            <h1 className="text-2xl font-bold text-white text-center">
-              ระบบจราจร ร้อยเอ็ด
-            </h1>
-            {!loggedIn ? (
-              <>
-                <TextField
-                  label="ชื่อผู้ใช้"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  fullWidth
-                  margin="normal"
-                  className="bg-gray-800 text-white"
-                />
-                <TextField
-                  label="รหัสผ่าน"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  fullWidth
-                  margin="normal"
-                  className="bg-gray-800 text-white"
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className="w-full mt-4"
-                  onClick={handleLogin}
-                >
-                  เข้าสู่ระบบ
-                </Button>
-              </>
-            ) : (
-              <div className="space-y-4 text-white">
-                <Card className="bg-gray-900">
-                  <CardContent>
-                    <h2 className="text-lg font-semibold mb-2">แผนที่จราจร</h2>
-                    <iframe
-                      src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=Roi+Et+Thailand"
-                      width="100%"
-                      height="200"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                    ></iframe>
-                  </CardContent>
-                </Card>
-                <Card className="bg-gray-900">
-                  <CardContent>
-                    <h2 className="text-lg font-semibold mb-2">ข่าวจราจร</h2>
-                    <ul className="list-disc list-inside">
-                      <li>หลีกเลี่ยงถนนแจ้งสนิท ช่วงเย็น – รถติด</li>
-                      <li>แนะนำเส้นทางผ่านบ้านป่าไม้</li>
-                    </ul>
-                  </CardContent>
-                </Card>
-                <Card className="bg-gray-900">
-                  <CardContent>
-                    <h2 className="text-lg font-semibold mb-2">ฟังวิทยุจราจร</h2>
-                    <audio controls className="w-full">
-                      <source
-                        src="https://radio.streaming.in.th:8443/fm91.mp3"
-                        type="audio/mpeg"
-                      />
-                      เบราว์เซอร์ของคุณไม่รองรับการเล่นเสียง
-                    </audio>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </motion.div>
-    </div>
-  );
-}
+    <h2>แผนที่</h2>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.286586404378!2d103.65336541483136!3d16.053372788879364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31234d8ea2cbe9b7%3A0x882f9c0b0fa7f4e3!2z4LiK4Li14LmI4LiX4Li04LiH4LmA4LiI4Liy4LiB4Lil4LmM!5e0!3m2!1sth!2sth!4v1700000000000"
+      width="100%" height="250" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
 
-export default TrafficLoginPage;
+    <h2>ข่าวจราจร</h2>
+    <ul style="text-align: left; padding-left: 1.5rem;">
+      <li>หลีกเลี่ยงถนนแจ้งสนิทช่วงเย็น – รถติด</li>
+      <li>แนะนำเส้นทางผ่านบ้านป่าไม้</li>
+    </ul>
+
+    <h2>ฟังวิทยุจราจร</h2>
+    <audio controls>
+      <source src="https://radio.streaming.in.th:8443/fm91.mp3" type="audio/mpeg">
+      เบราว์เซอร์ของคุณไม่รองรับการเล่นเสียง
+    </audio>
+  </div>
+</body>
+</html>
